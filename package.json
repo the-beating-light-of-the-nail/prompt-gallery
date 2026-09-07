@@ -1,0 +1,10 @@
+{
+  "name": "prompt-gallery",
+  "version": "1.0.0",
+  "private": true,
+  "description": "提示词画廊：AI 视频/图片/反推提示词筛选画廊，一键复制",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  }
+}

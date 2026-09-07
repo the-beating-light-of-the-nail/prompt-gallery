@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>提示词画廊 - 精选 AI 视频 / 图片提示词，点开即复制</title>
+  <meta name="description" content="精选 AI 视频与图片生成提示词：变装秀、延时摄影、赛博朋克、国风插画、3D 渲染、图片反推等 45+ 条即用 prompt，按类型 / 分类 / 模型筛选，一键复制。">
+  <meta property="og:title" content="提示词画廊 - 精选 AI 视频 / 图片提示词">
+  <meta property="og:description" content="按类型、分类、模型筛选 AI 提示词，点开卡片一键复制，直接粘贴到即梦、可灵、Midjourney 等模型使用。">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="logo">🎬</span>
+        <div>
+          <h1>提示词画廊</h1>
+          <p class="tagline">精选 AI 视频 / 图片提示词 · 点开即复制</p>
+        </div>
+      </div>
+      <div class="search-wrap">
+        <input id="search" type="search" placeholder="搜索提示词、标签、模型…" autocomplete="off">
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="filters">
+      <div id="type-pills" class="type-pills" role="tablist" aria-label="媒体类型"></div>
+      <div id="cat-chips" class="chips" aria-label="分类"></div>
+      <div id="model-chips" class="chips" aria-label="模型"></div>
+    </div>
+    <p id="stats" class="stats"></p>
+    <section id="grid" class="grid" aria-label="提示词列表"></section>
+    <div id="empty" class="empty hidden">没有找到匹配的提示词，换个关键词试试？</div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>提示词画廊 · 持续更新 · 复制后粘贴到即梦 / 可灵 / Midjourney 等模型即可使用</p>
+      <p class="friend-links">
+        <a href="https://hub.cdqyfdbymn.me" target="_blank" rel="noopener">全部站点</a>
+        <a href="https://videoprompts.cdqyfdbymn.me" target="_blank" rel="noopener">视频运镜速查</a>
+        <a href="https://linyi.cdqyfdbymn.me" target="_blank" rel="noopener">林意 LINYI</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- 提示词详情弹窗 -->
+  <div id="modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal">
+      <button id="modal-close" class="modal-close" aria-label="关闭">✕</button>
+      <div id="modal-thumb" class="modal-thumb"><span id="modal-emoji"></span></div>
+      <div class="modal-body">
+        <h2 id="modal-title"></h2>
+        <div id="modal-badges" class="badges"></div>
+        <p id="modal-desc" class="modal-desc"></p>
+        <pre id="modal-prompt" class="prompt-box"></pre>
+        <button id="modal-copy" class="copy-btn">📋 复制提示词</button>
+        <p class="modal-tip">复制后粘贴到对应 AI 模型即可使用</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden">已复制到剪贴板 ✓</div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

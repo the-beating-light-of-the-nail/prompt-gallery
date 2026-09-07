@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "prompt-gallery",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./public",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "prompts.cdqyfdbymn.me", "custom_domain": true }
+  ]
+}
