@@ -22,6 +22,7 @@
     empty: document.getElementById("empty"),
     modal: document.getElementById("modal"),
     modalThumb: document.getElementById("modal-thumb"),
+    modalImg: document.getElementById("modal-img"),
     modalEmoji: document.getElementById("modal-emoji"),
     modalTitle: document.getElementById("modal-title"),
     modalBadges: document.getElementById("modal-badges"),
@@ -144,7 +145,14 @@
   function openModal(p) {
     currentItem = p;
     el.modalThumb.className = "modal-thumb " + gradOf(p) + (p.img ? " with-img" : "");
-    el.modalThumb.style.backgroundImage = p.img ? 'url("' + p.img + '")' : "";
+    if (p.img) {
+      el.modalImg.src = p.img;
+      el.modalImg.alt = p.title;
+      el.modalImg.classList.remove("hidden");
+    } else {
+      el.modalImg.removeAttribute("src");
+      el.modalImg.classList.add("hidden");
+    }
     el.modalEmoji.style.display = p.img ? "none" : "";
     el.modalEmoji.className = "emoji-fallback";
     el.modalEmoji.textContent = p.emoji;

@@ -99,11 +99,10 @@ body {
 /* ---------- 统计 ---------- */
 .stats { color: var(--muted); font-size: 13px; padding: 16px 0 4px; }
 
-/* ---------- 卡片 ---------- */
+/* ---------- 卡片（瀑布流：按图片自然比例整图展示） ---------- */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  gap: 16px;
+  columns: 270px;
+  column-gap: 16px;
   padding: 12px 0 40px;
 }
 .card {
@@ -115,6 +114,8 @@ body {
   transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
   display: flex;
   flex-direction: column;
+  break-inside: avoid;
+  margin-bottom: 16px;
 }
 .card:hover {
   transform: translateY(-3px);
@@ -122,13 +123,13 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 .thumb {
-  height: 120px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
+.thumb:not(:has(.thumb-img)) { height: 140px; }
 .thumb::after {
   content: "";
   position: absolute;
@@ -296,13 +297,20 @@ body {
 
 /* ===== 实图卡片（img 字段存在时覆盖 emoji 兜底） ===== */
 .thumb .thumb-img {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   z-index: 0;
 }
 .modal-thumb { position: relative; overflow: hidden; }
-.modal-thumb.with-img { background-size: cover; background-position: center; }
+.modal-thumb.with-img {
+  height: auto;
+  background: #0b0e12;
+}
 .modal-thumb.with-img .emoji-fallback { display: none; }
+.modal-img {
+  display: block;
+  width: 100%;
+  max-height: 62vh;
+  object-fit: contain;
+}
