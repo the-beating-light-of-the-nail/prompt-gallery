@@ -112,8 +112,12 @@
     el.stats.textContent = "共 " + items.length + " 条提示词";
     el.empty.classList.toggle("hidden", items.length > 0);
     el.grid.innerHTML = items.map(function (p) {
+      var thumbImg = p.img
+        ? '<img class="thumb-img" loading="lazy" src="' + esc(p.img) + '" alt="' + esc(p.title) + '" onerror="this.remove()">'
+        : "";
       return '<article class="card" data-id="' + p.id + '" tabindex="0" role="button" aria-label="查看提示词：' + esc(p.title) + '">' +
-        '<div class="thumb ' + gradOf(p) + '"><span class="emoji">' + p.emoji + '</span>' +
+        '<div class="thumb ' + gradOf(p) + '">' + thumbImg +
+        (p.img ? "" : '<span class="emoji">' + p.emoji + "</span>") +
         '<span class="badge t-' + p.type + '">' + TYPE_LABEL[p.type] + "</span></div>" +
         '<div class="card-body"><h3>' + esc(p.title) + "</h3>" +
         '<p class="prompt-preview">' + esc(p.prompt) + "</p>" +
@@ -139,7 +143,9 @@
 
   function openModal(p) {
     currentItem = p;
-    el.modalThumb.className = "modal-thumb " + gradOf(p);
+    el.modalThumb.className = "modal-thumb " + gradOf(p) + (p.img ? " with-img" : "");
+    el.modalThumb.style.backgroundImage = p.img ? 'url("' + p.img + '")' : "";
+    el.modalEmoji.style.display = p.img ? "none" : "";
     el.modalEmoji.className = "emoji-fallback";
     el.modalEmoji.textContent = p.emoji;
     el.modalTitle.textContent = p.title;

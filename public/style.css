@@ -293,3 +293,16 @@ body {
   .modal-backdrop { padding: 12px; }
   .modal-body { padding: 16px 18px 20px; }
 }
+
+/* ===== 实图卡片（img 字段存在时覆盖 emoji 兜底） ===== */
+.thumb .thumb-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.modal-thumb { position: relative; overflow: hidden; }
+.modal-thumb.with-img { background-size: cover; background-position: center; }
+.modal-thumb.with-img .emoji-fallback { display: none; }
