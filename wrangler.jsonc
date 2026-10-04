@@ -7,8 +7,8 @@
     "directory": "./public",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
-  },
-  "routes": [
-    { "pattern": "prompts.cdqyfdbymn.me", "custom_domain": true }
-  ]
+  }
+  // 2026-10-04：prompts.cdqyfdbymn.me 已迁往 Vercel（自定义域名），不再挂 Workers，
+  // 勿重新添加 routes，否则会把域名从 Vercel 抢回来
+
 }
