@@ -301,7 +301,10 @@ body {
   width: 100%;
   height: auto;
   z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
+.thumb .thumb-img.loaded { opacity: 1; }
 .modal-thumb { position: relative; overflow: hidden; }
 .modal-thumb.with-img {
   height: auto;

@@ -114,10 +114,11 @@
     el.empty.classList.toggle("hidden", items.length > 0);
     el.grid.innerHTML = items.map(function (p) {
       var thumbImg = p.img
-        ? '<img class="thumb-img" loading="lazy" src="' + esc(p.img) + '" alt="' + esc(p.title) + '" onerror="this.remove()">'
+        ? '<img class="thumb-img" loading="lazy" src="' + esc(p.img) + '" alt="' + esc(p.title) + '">'
         : "";
+      var ratio = p.img && p.w ? ' style="aspect-ratio:' + p.w + '/' + p.h + '"' : "";
       return '<article class="card" data-id="' + p.id + '" tabindex="0" role="button" aria-label="查看提示词：' + esc(p.title) + '">' +
-        '<div class="thumb ' + gradOf(p) + '">' + thumbImg +
+        '<div class="thumb ' + gradOf(p) + '"' + ratio + '>' + thumbImg +
         (p.img ? "" : '<span class="emoji">' + p.emoji + "</span>") +
         '<span class="badge t-' + p.type + '">' + TYPE_LABEL[p.type] + "</span></div>" +
         '<div class="card-body"><h3>' + esc(p.title) + "</h3>" +
@@ -126,6 +127,16 @@
         p.models.slice(0, 3).map(function (m) { return '<span class="tag model">' + esc(m) + "</span>"; }).join("") +
         "</div></div></article>";
     }).join("");
+    // 图淡入 + 加载失败兜底（缓存图 complete 时 load 不触发，须补判）
+    Array.prototype.forEach.call(el.grid.querySelectorAll(".thumb-img"), function (img) {
+      if (img.complete && img.naturalWidth) img.classList.add("loaded");
+      else img.addEventListener("load", function () { img.classList.add("loaded"); });
+      img.addEventListener("error", function () {
+        var t = img.parentElement;
+        if (t) t.style.aspectRatio = "";
+        img.remove();
+      });
+    });
   }
 
   function syncURL() {
