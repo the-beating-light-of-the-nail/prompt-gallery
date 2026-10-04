@@ -28,6 +28,6 @@ npx wrangler dev
 - image：AI 图片生成提示词（Midjourney / Flux / SD / 即梦）
 - reverse：图片反推提示词，把图片发给视觉模型（GPT-4o / Gemini / 豆包 / Kimi）后粘贴使用（源自 prompt-pool 的 7 类 21 条合集）
 
-## 图片资产（不在 git 里）
+## 图片资产（不在 git 里，已迁 Vercel Blob）
 
-`public/img/` 的 285 张缩略图**不进版本库**（.gitignore 排除），只存在本机和线上 Cloudflare Worker 的已部署资产里。计划后续迁到对象存储（Vercel Blob），届时 `data.js` 里的 `img` 路径改为外链即可。**注意：在新机器 clone 后直接 `wrangler deploy` 会部署出一个没有图的站**，需先从本机或线上取回 `public/img/`。
+`public/img/` 的 285 张缩略图**不进版本库**（.gitignore 排除），线上图片走 **Vercel Blob**（`kixmteksehtzcdmo.public.blob.vercel-storage.com/img/`），`data.js` 里的 `img` 字段已是 Blob 外链。本机 `public/img/` 保留一份源图备份。**注意：新机器 clone 后不缺图**（图片不再依赖本目录）；CF 线上站（prompts.cdqyfdbymn.me）当前部署仍是本地图版本，下次 `wrangler deploy` 后会切到 Blob 图。
