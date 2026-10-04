@@ -140,9 +140,11 @@
   }
 
   function syncURL() {
-    var url = location.pathname;
-    if (state.type !== "all") url += "?media_type=" + state.type;
-    history.replaceState(null, "", url);
+    try {
+      var url = location.pathname;
+      if (state.type !== "all") url += "?media_type=" + state.type;
+      history.replaceState(null, "", url);
+    } catch (e) { /* file:// 直开等环境下 replaceState 会被拒，不影响功能 */ }
   }
 
   function render() {
